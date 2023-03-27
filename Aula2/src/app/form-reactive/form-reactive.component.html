@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-12">
+        <form [formGroup]="form" (ngSubmit)="salvar()">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input formControlName="nome" type="text" class="form-control">
+                <div style="color: red;" *ngIf="form.get('nome').invalid && (form.get('nome').dirty || form.get('nome').touched)">
+                    <div *ngIf="form.get('nome').errors['required']">Nome é obrigatório</div>
+                  </div>            
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input formControlName="email" type="email" class="form-control">
+                <div style="color: red;" *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)">
+                    <div *ngIf="form.get('email').errors['required']">E-mail é obrigatório</div>
+                    <div *ngIf="form.get('email').errors['email']">E-mail não está no formato correto</div>
+                  </div>            
+            </div>
+            <div class="mb-3">
+                <label for="senha" class="form-label">Senha</label>
+                <input formControlName="senha" type="password" class="form-control">
+                <div style="color: red;" *ngIf="form.get('senha').invalid && (form.get('senha').dirty || form.get('senha').touched)">
+                    <div *ngIf="form.get('senha').errors['required']">Senha é obrigatório</div>
+                    <div *ngIf="form.get('senha').errors['minLength']">A senha precisa no mínimo 6 caractéres</div>
+                    <div *ngIf="form.get('senha').errors['maxLength']">A senha não pode ter mais de 20 caractéres</div>
+                  </div>            
+            </div>
+                        <div class="mb-3">
+                <label for="confirmacaosenha" class="form-label">Confirme sua senha</label>
+                <input formControlName="confirmacaosenha" type="password" class="form-control">
+                <div style="color: red;" *ngIf="form.get('confirmacaosenha').invalid && (form.get('confirmacaosenha').dirty || form.get('confirmacaosenha').touched)">
+                    <div *ngIf="form.get('confirmacaosenha').errors['required']">Senha é obrigatório</div>
+                    <div *ngIf="form.get('confirmacaosenha').errors['minLength']">A senha precisa no mínimo 6 caractéres</div>
+                    <div *ngIf="form.get('confirmacaosenha').errors['maxLength']">A senha não pode ter mais de 20 caractéres</div>
+                  </div>            
+            </div>
+            <button (click) = "salvar()" [disabled]="!form.valid" class="btn btn-primary" type="submit">Salvar</button>
+            <p>{{confirmacao}}</p>
+        </form>
+    </div>
+</div>
