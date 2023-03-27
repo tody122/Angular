@@ -1,0 +1,5 @@
+git add .
+git commit -a -m "(mensagem)"
+git push
+
+git pull
