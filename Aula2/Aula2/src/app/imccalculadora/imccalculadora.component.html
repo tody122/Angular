@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-12">
+        <form [formGroup]="form" (ngSubmit)="salvar()">
+            <div class="mb-3">
+                <label for="peso" class="form-label">Peso (em Kg)</label>
+                <input [(ngModel)]="peso" formControlName="peso" type="number" class="form-control">
+                <div style="color: red;" *ngIf="form.get('peso').invalid && (form.get('peso').dirty || form.get('peso').touched)">
+                    <div *ngIf="form.get('peso').errors['required']">Peso é obrigatório</div>
+                    <div *ngIf="form.get('peso').errors['min']">O valor mínimo é 1</div>
+                    <div *ngIf="form.get('peso').errors['max']">O valor máximo é 500</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="altura" class="form-label">Altura (em metros)</label>
+                <input [(ngModel)]="altura" formControlName="altura" type="number" class="form-control">
+                <div style="color: red;" *ngIf="form.get('altura').invalid && (form.get('altura').dirty || form.get('altura').touched)">
+                    <div *ngIf="form.get('altura').errors['required']">Altura é obrigatório</div>
+                    <div *ngIf="form.get('altura').errors['min']">O valor mínimo é 0,01</div>
+                    <div *ngIf="form.get('altura').errors['max']">O valor máximo é 3</div>
+                </div>
+            </div>
+        </form> 
+        <button [disabled]="!form.valid" (click) = "salvar()" class="btn btn-primary" type="submit">Fazer o calculo</button>
+        <h2>Você está {{estado}}, pois seu imc é: {{indice}}</h2>
+        <p> TABELA DE IMC</p>
+
+        <p>MENOR QUE 18: ABAIXO DO NORMAL</p>
+        <p>ENTRE 18,5 E 24,9:	NORMAL</p>
+        <p>ENTRE 25,0 E 29,9:	SOBREPESO GRAU I</p>
+        <p>ENTRE 30,0 E 39,9:	OBESIDADE GRAU II</p>
+        <p>MAIOR QUE 40,0:	OBESIDADE GRAVE GRAU III</p>
+       
+    </div>
+</div>
